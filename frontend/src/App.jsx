@@ -72,6 +72,9 @@ function App() {
         {!cargando && !estudiantes && !error && (
           <div className="welcome-message">
             <p>👉 Haz clic en "Consultar Votos" para ver los datos</p>
+            <a href="https://portafoliosmendo.netlify.app" target="_blank" rel="noopener noreferrer" className="contact-button contact-button-mobile">
+              💼 ¿Proyectos de software? Contáctame
+            </a>
           </div>
         )}
       </div>
