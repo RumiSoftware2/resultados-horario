@@ -6,6 +6,8 @@ import ErrorMessage from './components/ErrorMessage'
 import LoadingSpinner from './components/LoadingSpinner'
 import './App.css'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
 function App() {
   const [estudiantes, setEstudiantes] = useState(null)
   const [votesData, setVotesData] = useState(null)
@@ -17,11 +19,11 @@ function App() {
     setError(null)
     try {
       // Obtener estudiantes
-      const estudiantesRes = await axios.get('http://localhost:5000/api/estudiantes')
+      const estudiantesRes = await axios.get(`${API_URL}/api/estudiantes`)
       setEstudiantes(estudiantesRes.data.data)
 
       // Obtener estadísticas
-      const estadisticasRes = await axios.get('http://localhost:5000/api/estadisticas')
+      const estadisticasRes = await axios.get(`${API_URL}/api/estadisticas`)
       setVotesData(estadisticasRes.data)
     } catch (err) {
       setError('Error al conectar con el servidor. ¿Está el backend en ejecución?')
