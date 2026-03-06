@@ -5,7 +5,7 @@ function VotesStats({ datos }) {
     return null;
   }
 
-  const { horariosMasVotados, conteoCompleto, totalEstudiantes } = datos;
+  const { horariosMasVotados, conteoCompleto, totalEstudiantes, totalVotos } = datos;
 
   return (
     <div className="stats-container">
@@ -15,6 +15,10 @@ function VotesStats({ datos }) {
         <div className="summary-card">
           <span className="summary-label">Total de Estudiantes</span>
           <span className="summary-value">{totalEstudiantes}</span>
+        </div>
+        <div className="summary-card">
+          <span className="summary-label">Total de Votos</span>
+          <span className="summary-value">{totalVotos}</span>
         </div>
       </div>
 
@@ -32,8 +36,8 @@ function VotesStats({ datos }) {
                   <p className="horario-votes">{horario.votos} votos</p>
                 </div>
                 <div className="vote-percentage">
-                  {totalEstudiantes > 0 && (
-                    <span>{((horario.votos / totalEstudiantes) * 100).toFixed(1)}%</span>
+                  {totalVotos > 0 && (
+                    <span>{((horario.votos / totalVotos) * 100).toFixed(1)}%</span>
                   )}
                 </div>
               </div>
@@ -44,26 +48,28 @@ function VotesStats({ datos }) {
 
       {conteoCompleto && Object.keys(conteoCompleto).length > 0 ? (
         <div className="stats-section">
-          <h3>📊 Desglose Completo de Votos</h3>
+          <h3>📊 Desglose Completo de Votos ({totalVotos})</h3>
           <div className="votes-breakdown">
-            {Object.entries(conteoCompleto).map(([horario, votos]) => {
-              const porcentaje = ((votos / totalEstudiantes) * 100).toFixed(1);
-              return (
-                <div key={horario} className="vote-item">
-                  <div className="vote-label">
-                    <span className="horario-name">{horario}</span>
-                    <span className="vote-count">{votos} votos</span>
+            {Object.entries(conteoCompleto)
+              .sort((a, b) => b[1] - a[1])
+              .map(([horario, votos]) => {
+                const porcentaje = totalVotos > 0 ? ((votos / totalVotos) * 100).toFixed(1) : 0;
+                return (
+                  <div key={horario} className="vote-item">
+                    <div className="vote-label">
+                      <span className="horario-name">{horario}</span>
+                      <span className="vote-count">{votos} votos</span>
+                    </div>
+                    <div className="progress-bar">
+                      <div
+                        className="progress-fill"
+                        style={{ width: `${porcentaje}%` }}
+                      />
+                    </div>
+                    <span className="percentage">{porcentaje}%</span>
                   </div>
-                  <div className="progress-bar">
-                    <div
-                      className="progress-fill"
-                      style={{ width: `${porcentaje}%` }}
-                    />
-                  </div>
-                  <span className="percentage">{porcentaje}%</span>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
       ) : null}

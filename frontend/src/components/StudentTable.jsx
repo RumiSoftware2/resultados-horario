@@ -28,17 +28,21 @@ function StudentTable({ estudiantes }) {
             {estudiantes.map((est, index) => (
               <tr key={est._id} className="table-row">
                 <td className="numero-columna">{index + 1}</td>
-                <td>{est.nombre}</td>
-                <td className="correo-columna">{est.correo}</td>
+                <td>{est.name || 'N/A'}</td>
+                <td className="correo-columna">{est.email || 'N/A'}</td>
                 <td className="grupo-columna">
-                  <span className={`grupo-badge grupo-${est.grupo}`}>
-                    Grupo {est.grupo}
+                  <span className={`grupo-badge grupo-${est.group}`}>
+                    Grupo {est.group || 'N/A'}
                   </span>
                 </td>
                 <td className="horario-columna">
-                  <span className={`horario-badge ${est.horario === 'ninguno' ? 'ninguno' : ''}`}>
-                    {est.horario}
-                  </span>
+                  {est.schedules && est.schedules.length > 0 ? (
+                    <span className="horario-badge">
+                      {est.schedules.join(', ')}
+                    </span>
+                  ) : (
+                    <span className="horario-badge ninguno">Sin horario</span>
+                  )}
                 </td>
               </tr>
             ))}

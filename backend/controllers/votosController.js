@@ -33,11 +33,19 @@ const obtenerEstadisticasVotos = async (req, res) => {
       });
     }
 
-    // Contar votos de cada horario (excluyendo "ninguno")
+    // Contar votos de cada horario
     const conteoHorarios = {};
+    let totalVotos = 0;
+    
     estudiantes.forEach((est) => {
-      if (est.horario && est.horario !== 'ninguno') {
-        conteoHorarios[est.horario] = (conteoHorarios[est.horario] || 0) + 1;
+      // Si schedules existe y es un array
+      if (est.schedules && Array.isArray(est.schedules)) {
+        est.schedules.forEach((horario) => {
+          if (horario && horario !== 'ninguno') {
+            conteoHorarios[horario] = (conteoHorarios[horario] || 0) + 1;
+            totalVotos++;
+          }
+        });
       }
     });
 
@@ -53,6 +61,7 @@ const obtenerEstadisticasVotos = async (req, res) => {
     res.json({
       success: true,
       totalEstudiantes: estudiantes.length,
+      totalVotos,
       horariosMasVotados,
       conteoCompleto: conteoHorarios,
       mensaje: 'Consulta realizada exitosamente',

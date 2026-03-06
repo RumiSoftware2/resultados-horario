@@ -57,8 +57,8 @@ function App() {
 
         {!cargando && estudiantes && (
           <>
-            <StudentTable estudiantes={estudiantes} />
             <VotesStats datos={votesData} />
+            <StudentTable estudiantes={estudiantes} />
           </>
         )}
 

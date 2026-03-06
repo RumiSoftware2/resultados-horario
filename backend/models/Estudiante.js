@@ -1,28 +1,23 @@
 const mongoose = require('mongoose');
 
 const estudianteSchema = new mongoose.Schema({
-  nombre: {
+  name: {
     type: String,
-    required: true,
+    required: false,
   },
-  correo: {
+  email: {
     type: String,
-    required: true,
+    required: false,
   },
-  grupo: {
+  group: {
     type: Number,
-    required: true,
-    enum: [1, 2],
+    required: false,
   },
-  horario: {
-    type: String,
-    required: true,
-    enum: ['08:00-10:00', '10:00-12:00', '14:00-16:00', 'ninguno'],
+  schedules: {
+    type: [String],
+    required: false,
+    default: [],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+}, { strict: false });
 
 module.exports = mongoose.model('Estudiante', estudianteSchema, 'students');
