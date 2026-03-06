@@ -42,7 +42,7 @@ function App() {
               <h1>📊 Consulta de Votos de Horarios</h1>
               <p>Selecciona los horarios preferentes de monitoria</p>
             </div>
-            <a href="https://tu-portafolio.com" target="_blank" rel="noopener noreferrer" className="contact-button">
+            <a href="https://portafoliosmendo.netlify.app" target="_blank" rel="noopener noreferrer" className="contact-button">
               💼 ¿Quieres proyectos? Contáctame
             </a>
           </div>
