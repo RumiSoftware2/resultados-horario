@@ -1,0 +1,73 @@
+import { useState } from 'react'
+import axios from 'axios'
+import StudentTable from './components/StudentTable'
+import VotesStats from './components/VotesStats'
+import ErrorMessage from './components/ErrorMessage'
+import LoadingSpinner from './components/LoadingSpinner'
+import './App.css'
+
+function App() {
+  const [estudiantes, setEstudiantes] = useState(null)
+  const [votesData, setVotesData] = useState(null)
+  const [cargando, setCargando] = useState(false)
+  const [error, setError] = useState(null)
+
+  const consultarVotos = async () => {
+    setCargando(true)
+    setError(null)
+    try {
+      // Obtener estudiantes
+      const estudiantesRes = await axios.get('http://localhost:5000/api/estudiantes')
+      setEstudiantes(estudiantesRes.data.data)
+
+      // Obtener estadísticas
+      const estadisticasRes = await axios.get('http://localhost:5000/api/estadisticas')
+      setVotesData(estadisticasRes.data)
+    } catch (err) {
+      setError('Error al conectar con el servidor. ¿Está el backend en ejecución?')
+      console.error(err)
+    } finally {
+      setCargando(false)
+    }
+  }
+
+  return (
+    <>
+      <div className="container">
+        <header className="header">
+          <h1>📊 Consulta de Votos de Horarios</h1>
+          <p>Selecciona los horarios preferentes de monitoria</p>
+        </header>
+
+        <div className="button-section">
+          <button 
+            onClick={consultarVotos} 
+            disabled={cargando} 
+            className="boton-consultar"
+          >
+            {cargando ? 'Cargando...' : '🔍 Consultar Votos'}
+          </button>
+        </div>
+
+        {error && <ErrorMessage message={error} />}
+
+        {cargando && <LoadingSpinner />}
+
+        {!cargando && estudiantes && (
+          <>
+            <StudentTable estudiantes={estudiantes} />
+            <VotesStats datos={votesData} />
+          </>
+        )}
+
+        {!cargando && !estudiantes && !error && (
+          <div className="welcome-message">
+            <p>👉 Haz clic en "Consultar Votos" para ver los datos</p>
+          </div>
+        )}
+      </div>
+    </>
+  )
+}
+
+export default App

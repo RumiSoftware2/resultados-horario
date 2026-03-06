@@ -1,0 +1,131 @@
+.table-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  backdrop-filter: blur(10px);
+}
+
+.table-container h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.students-table thead {
+  background-color: rgba(102, 126, 234, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.students-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.students-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.students-table tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+}
+
+.students-table td {
+  padding: 1rem;
+  color: #fff;
+  word-wrap: break-word;
+}
+
+.numero-columna {
+  font-weight: 600;
+  color: #ff6b6b;
+  width: 40px;
+  text-align: center;
+}
+
+.correo-columna {
+  font-size: 0.9rem;
+  color: #b0b0ff;
+}
+
+.grupo-columna {
+  display: flex;
+  justify-content: center;
+}
+
+.grupo-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 80px;
+}
+
+.grupo-1 {
+  background-color: rgba(102, 126, 234, 0.3);
+  color: #b0d4ff;
+  border: 1px solid rgba(102, 126, 234, 0.5);
+}
+
+.grupo-2 {
+  background-color: rgba(118, 75, 162, 0.3);
+  color: #d4b0ff;
+  border: 1px solid rgba(118, 75, 162, 0.5);
+}
+
+.horario-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.4);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.horario-badge.ninguno {
+  background-color: rgba(255, 159, 64, 0.2);
+  border-color: rgba(255, 159, 64, 0.4);
+  color: #ffd4a0;
+}
+
+.sin-datos {
+  text-align: center;
+  color: #ffeb3b;
+  font-style: italic;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .students-table th,
+  .students-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .grupo-badge,
+  .horario-badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
