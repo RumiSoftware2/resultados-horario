@@ -37,8 +37,15 @@ function App() {
     <>
       <div className="container">
         <header className="header">
-          <h1>📊 Consulta de Votos de Horarios</h1>
-          <p>Selecciona los horarios preferentes de monitoria</p>
+          <div className="header-top">
+            <div>
+              <h1>📊 Consulta de Votos de Horarios</h1>
+              <p>Selecciona los horarios preferentes de monitoria</p>
+            </div>
+            <a href="https://tu-portafolio.com" target="_blank" rel="noopener noreferrer" className="contact-button">
+              💼 ¿Quieres proyectos? Contáctame
+            </a>
+          </div>
         </header>
 
         <div className="button-section">
