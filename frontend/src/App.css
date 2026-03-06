@@ -152,6 +152,24 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+.warning-message {
+  background-color: rgba(255, 193, 7, 0.15);
+  border: 2px solid rgba(255, 193, 7, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  font-size: 1rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.warning-message strong {
+  color: #FFD700;
+  font-weight: 700;
+}
+
 .welcome-message {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -240,6 +258,12 @@
     width: 100%;
     font-size: 1rem;
     padding: 12px 20px;
+  }
+
+  .warning-message {
+    padding: 1rem;
+    font-size: 0.9rem;
+    margin: 1rem 0;
   }
 }
 

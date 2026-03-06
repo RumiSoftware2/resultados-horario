@@ -60,6 +60,12 @@ function App() {
 
         {error && <ErrorMessage message={error} />}
 
+        {cargando && (
+          <div className="warning-message">
+            ⏳ <strong>Por favor, espera...</strong> Esto puede tardar 1-2 minutos. El servidor está en plan gratuito y podría estar dormido.
+          </div>
+        )}
+
         {cargando && <LoadingSpinner />}
 
         {!cargando && estudiantes && (
